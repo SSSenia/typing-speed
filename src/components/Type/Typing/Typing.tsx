@@ -3,8 +3,8 @@ import './Typing.scss';
 
 export function Typing() {
   return (
-    <>
+    <main>
       Typing
-    </>
+    </main>
   );
 }

@@ -3,8 +3,8 @@ import './Setup.scss';
 
 export function Setup() {
   return (
-    <>
+    <main>
       Setup
-    </>
+    </main>
   );
 }

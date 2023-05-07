@@ -1,18 +1,17 @@
 import React from 'react';
-import { RouterProvider } from 'react-router-dom';
+import { Outlet, RouterProvider } from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { Footer } from './components/Footer/Footer';
-import { ROUTER } from './routing';
 import './App.scss';
 
 
 function App() {
   return (
-    <>
+    <div className='wrapper'>
       <Header></Header>
-      <RouterProvider router={ROUTER} />
+      <Outlet />
       <Footer></Footer>
-    </>
+    </div>
   );
 }
 

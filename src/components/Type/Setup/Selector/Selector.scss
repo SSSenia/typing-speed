@@ -1,0 +1,37 @@
+.selector {
+  &__title {
+    margin: 0;
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  &__title:first-child {
+    margin-top: 0;
+  }
+
+  &__group {
+    background-color: var(--dark);
+    padding: 2px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+  }
+
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-label {
+    cursor: pointer;
+    padding: 5px 7px;
+    margin: 5px;
+    border-radius: 3px;
+  }
+
+  &__radio-input:checked+label {
+    background-color: var(--accent);
+    color: var(--black);
+    transition-duration: .2s;
+  }
+}

@@ -1,0 +1,45 @@
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 19px;
+  width: 33em;
+  border: 2px solid var(--accent);
+  padding: 10px;
+  border-radius: 10px;
+  background-color: var(--dark);
+  margin: 20px;
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__key {
+    padding: 0.2em 0.5em;
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    background-color: var(--black);
+    margin: 0.1em;
+    border: 0.15em solid var(--light);
+    border-radius: 0.5em;
+    transition-duration: .1s;
+
+    &--space {
+      width: 100%;
+    }
+
+    &:hover{
+      background-color: var(--accent);
+      color: var(--black);
+    }
+
+    &--active, &:active{
+      background-color: var(--accent);
+      color: var(--black);
+      margin: 0.2em;
+      padding: 0.1em 0.4em;
+    }
+  }
+}

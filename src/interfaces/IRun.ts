@@ -1,4 +1,4 @@
-export interface IRun {
+export default interface IRun {
   date: Date,
   type: 'text-end' | 'time-end';
   language: string,

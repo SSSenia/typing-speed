@@ -1,7 +1,7 @@
 import React from "react";
 import './Selector.scss';
 import { UseFormRegister } from "react-hook-form";
-import { ITypeRun } from "../../../../interfaces/ITypeRun";
+import ITypeRun from "../../../../interfaces/ITypeRun";
 
 export default function Selector(props: {name: 'language' | 'type' | 'size' | 'time', values: string[], register: UseFormRegister<ITypeRun>}) {
 

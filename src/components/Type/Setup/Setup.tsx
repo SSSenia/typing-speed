@@ -4,7 +4,7 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 
 import './Setup.scss';
 import Selector from "./Selector/Selector";
-import { ITypeRun } from "../../../interfaces/ITypeRun";
+import ITypeRun from "../../../interfaces/ITypeRun";
 
 export function Setup() {
 
@@ -37,7 +37,8 @@ export function Setup() {
             search: createSearchParams({
               language: data.language,
               type: data.type,
-              size: data.size
+              size: data.size,
+              time: 'infinity'
             }).toString()
           });
         break;
@@ -48,6 +49,7 @@ export function Setup() {
             search: createSearchParams({
               language: data.language,
               type: data.type,
+              size: 'infinity',
               time: data.time
             }).toString()
           });

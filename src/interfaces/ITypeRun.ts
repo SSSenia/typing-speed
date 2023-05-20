@@ -1,6 +1,6 @@
-export interface ITypeRun {
+export  default interface ITypeRun {
   language: 'en' | 'ru' | 'ua',
   type: 'text-end' | 'time-end';
-  size?: 'small' | 'medium' | 'long';
-  time?: '30s' | '60s' | '90s' | '120s';
+  size: 'small' | 'medium' | 'long' | 'infinity';
+  time: '30s' | '60s' | '90s' | '120s' | 'infinity';
 }

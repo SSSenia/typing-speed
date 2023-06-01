@@ -1,0 +1,36 @@
+.progress {
+  font-size: 19px;
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  background-color: var(--dark);
+  margin: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.indicator {
+  padding: .4em .8em;
+  border-left: 2px solid var(--accent);
+  display: flex;
+
+  &:first-child {
+    border-left: none;
+  }
+
+  &__name {
+    color: var(--accent);
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    font-weight: 600;
+
+    &::after {
+      content: ':';
+    }
+  }
+
+  &__value {
+    margin-left: .5em;
+  }
+}

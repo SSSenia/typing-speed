@@ -1,30 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-export default function Key(props: { value: string }) {
+export default function Key(props: { value: string, press: string[] }) {
 
-  const [press, setPress] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (event: any) => {
-      if (event.key === props.value || (props.value === 'Space' && event.key === ' ')) setPress(true);
-    };
-    const handleKeyUp = (event: any) => {
-      if (event.key === props.value || (props.value === 'Space' && event.key === ' ')) setPress(false);
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("keyup", handleKeyUp);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("keyup", handleKeyUp);
-    };
-  }, [props.value]);
+  const isSpace = props.value === 'Space';
+  const isPressed = props.press.find((value)=> value === props.value || (value === ' ' && props.value === 'Space'));
 
   return (
     <div
       className={
         "keyboard__key" +
-        (props.value == "Space" ? " keyboard__key--space" : "") +
-        (press ? " keyboard__key--active" : "")
+        (isSpace ? " keyboard__key--space" : "") +
+        (isPressed ? " keyboard__key--active" : "")
       }
       key={props.value}
     >

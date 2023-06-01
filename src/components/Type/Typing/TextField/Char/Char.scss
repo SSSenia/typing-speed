@@ -1,0 +1,16 @@
+.char {
+
+  &--wait {
+    background-color: var(--light);
+    color: var(--black);
+    transition-duration: .2s;
+  }
+
+  &--failed {
+    background-color: red;
+  }
+
+  &--complete {
+    background-color: var(--accent);
+  }
+}

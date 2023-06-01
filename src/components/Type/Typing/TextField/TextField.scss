@@ -1,0 +1,19 @@
+.text-field {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+  font-size: 19px;
+  width: 33em;
+  border: 2px solid var(--accent);
+  padding: .5em;
+  border-radius: 10px;
+  background-color: var(--dark);
+  margin: 20px;
+
+  &__row {
+    border-top: 2px solid var(--black);
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.hover-info{
+  position: absolute;
+  padding: .3em .5em;
+  max-width: 20em;
+  background-color: var(--black);
+  border: .1em solid var(--dark);
+  border-radius: .5em;
+  z-index: 1;
+}

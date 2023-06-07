@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import './Statistic.scss';
 import IRun from "../../interfaces/IRun";
 import Run from "./Run/Run";
+import HoverInfo from "../../UI/HoverInfo/HoverInfo";
 
 export function Statistic() {
+
+  const [hovered, setHovered] = useState('');
 
   const history = localStorage.getItem('history');
 
@@ -133,8 +136,10 @@ export function Statistic() {
           <div className={'selection__selector selection__selector--head' + (selected.length === parsedHistory.length ? ' selection__selector--active' : '')} onClick={() => {
             if (selected.length !== parsedHistory.length) setSelected(parsedHistory.map((item) => item.id));
             else setSelected([]);
-          }}>
-
+          }}
+            onMouseEnter={() => setHovered('statistic.actions.select-all')}
+            onMouseLeave={() => setHovered('')}
+          >
           </div>
 
           {parsedHistory.map((items) =>
@@ -142,36 +147,21 @@ export function Statistic() {
               if (selected.find((value) => value === items.id)) setSelected(selected.filter((value) => value !== items.id));
               else setSelected(selected.concat([items.id]));
             }}>
-
             </div>
+
           )}
         </section>
         <section className='runs'>
           <div className="runs__property-header">
-            <button className={classesPropertyName('id')} onClick={changeSorting('id')}>
-              ID
-            </button>
-            <button className={classesPropertyName('date')} onClick={changeSorting('date')}>
-              Date
-            </button>
-            <button className={classesPropertyName('type')} onClick={changeSorting('type')}>
-              Type
-            </button>
-            <button className={classesPropertyName('language')} onClick={changeSorting('language')}>
-              Language
-            </button>
-            <button className={classesPropertyName('symbols')} onClick={changeSorting('symbols')}>
-              Symbols
-            </button>
-            <button className={classesPropertyName('words')} onClick={changeSorting('words')}>
-              Words
-            </button>
-            <button className={classesPropertyName('mistakes')} onClick={changeSorting('mistakes')}>
-              Mistakes
-            </button>
-            <button className={classesPropertyName('time')} onClick={changeSorting('time')}>
-              Time
-            </button>
+            {['ID', 'Date', 'Type', 'Language', 'Symbols', 'Words', 'Mistakes', 'Time']
+              .map((name) =>
+                <button
+                  className={classesPropertyName(name.toLowerCase())}
+                  onClick={changeSorting(name.toLowerCase())}
+                  onMouseEnter={() => setHovered(`statistic.head.${name.toLowerCase()}`)}
+                  onMouseLeave={() => setHovered('')}
+                >{name}</button>
+              )}
           </div>
           {parsedHistory.map((run) =>
             <Run run={run} key={run.id}></Run>
@@ -179,16 +169,27 @@ export function Statistic() {
         </section>
       </div>
       <section className="actions">
-        <button className="actions__button" onClick={deleteSelected}>
-          Delete
-        </button>
-        <button className="actions__button" onClick={exportSelected}>
-          Export
-        </button>
-        <button className="actions__button" onClick={importItems}>
-          Import
-        </button>
+        <button
+          className="actions__button"
+          onClick={deleteSelected}
+          onMouseEnter={() => setHovered('statistic.actions.delete')}
+          onMouseLeave={() => setHovered('')}
+        >Delete</button>
+        <button
+          className="actions__button"
+          onClick={exportSelected}
+          onMouseEnter={() => setHovered('statistic.actions.export')}
+          onMouseLeave={() => setHovered('')}
+        >Export</button>
+        <button
+          className="actions__button"
+          onClick={importItems}
+          onMouseEnter={() => setHovered('statistic.actions.import')}
+          onMouseLeave={() => setHovered('')}
+        >Import</button>
+
       </section>
+      {hovered && <HoverInfo text={hovered}></HoverInfo>}
     </main>
   );
 }

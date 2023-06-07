@@ -142,13 +142,13 @@ export function Typing() {
 
   switch (sizeParsed) {
     case 'small':
-      paramsRun.size = 50;
-      break;
-    case 'medium':
       paramsRun.size = 100;
       break;
+    case 'medium':
+      paramsRun.size = 250;
+      break;
     case 'long':
-      paramsRun.size = 150;
+      paramsRun.size = 500;
       break;
     case 'infinity':
       paramsRun.size = Infinity;

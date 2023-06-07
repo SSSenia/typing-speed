@@ -2,41 +2,59 @@
   margin: 20px;
 }
 
-.table{
+.table {
   display: grid;
   grid-template-columns: 2.5em 1fr;
 }
 
-.actions{
+.actions {
   text-align: center;
   display: flex;
   margin: .2em;
   justify-content: center;
   height: 2.5em;
 
-  &__button{
+  &__inscription {
+    margin-right: .5em;
+  }
+
+  &__button {
     border-radius: .5em;
-    padding: .2em 2em;
+    padding: .2em 1.5em;
     margin: .2em;
     transition-duration: .2s;
     border: none;
     background-color: var(--accent);
     color: var(--light);
     font-size: 16px;
+    display: flex;
+    align-items: center;
 
-    &:hover{
-      background-color: var(--light);
-      color: var(--black);
+    & svg {
+      transition-duration: .2s;
+      fill: var(--light);
+      width: 1em;
+      height: 1em;
     }
 
-    &:first-child{
+    &:hover {
+      background-color: var(--light);
+      color: var(--black);
+
+      & svg {
+        transition-duration: .2s;
+        fill: var(--black);
+      }
+    }
+
+    &:first-child {
       margin-left: 0;
     }
   }
 }
 
-.selection{
-  &__selector{
+.selection {
+  &__selector {
     font-size: 16px;
     margin: 0.2em;
     padding: 0.2em;
@@ -47,15 +65,15 @@
     border: 6px solid var(--dark);
     transition-duration: .1s;
 
-    &--head{
+    &--head {
       margin-bottom: calc(.2em + 2px);
     }
 
-    &--active{
+    &--active {
       background-color: var(--accent);
     }
 
-    &:hover{
+    &:hover {
       border: 6px solid var(--light);
     }
   }
@@ -67,7 +85,7 @@
     display: flex;
     border-bottom: 2px solid var(--accent);
     margin: .2em;
-    
+
   }
 
   &__property-name {
@@ -86,17 +104,18 @@
       background-color: var(--light);
       color: var(--dark);
     }
-    
-    &--ascending, &--descending {
+
+    &--ascending,
+    &--descending {
       background-color: var(--accent);
       color: var(--light);
     }
-    
-    &--ascending::after{
+
+    &--ascending::after {
       content: ' ⬆';
     }
 
-    &--descending::after{
+    &--descending::after {
       content: ' ⬇';
     }
   }

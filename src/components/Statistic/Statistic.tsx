@@ -3,6 +3,9 @@ import './Statistic.scss';
 import IRun from "../../interfaces/IRun";
 import Run from "./Run/Run";
 import HoverInfo from "../../UI/HoverInfo/HoverInfo";
+import Delete from "../../assets/img/Delete";
+import Export from "../../assets/img/Export";
+import Import from "../../assets/img/Import";
 
 export function Statistic() {
 
@@ -174,19 +177,28 @@ export function Statistic() {
           onClick={deleteSelected}
           onMouseEnter={() => setHovered('statistic.actions.delete')}
           onMouseLeave={() => setHovered('')}
-        >Delete</button>
+        >
+          <span className="actions__inscription">Delete</span>
+          <Delete />
+        </button>
         <button
           className="actions__button"
           onClick={exportSelected}
           onMouseEnter={() => setHovered('statistic.actions.export')}
           onMouseLeave={() => setHovered('')}
-        >Export</button>
+          >
+            <span className="actions__inscription">Export</span>
+            <Export />
+          </button>
         <button
           className="actions__button"
           onClick={importItems}
           onMouseEnter={() => setHovered('statistic.actions.import')}
           onMouseLeave={() => setHovered('')}
-        >Import</button>
+          >
+            <span className="actions__inscription">Import</span>
+            <Import />
+          </button>
 
       </section>
       {hovered && <HoverInfo text={hovered}></HoverInfo>}

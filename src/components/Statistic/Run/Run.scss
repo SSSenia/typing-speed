@@ -1,0 +1,24 @@
+.run {
+  display: flex;
+  background-color: var(--dark);
+  font-size: 16px;
+  margin: .2em;
+  padding: .2em;
+  border-radius: .2em;
+  justify-content: space-between;
+  border: 2px solid var(--dark);
+
+  &:hover {
+    border: 2px solid var(--accent);
+  }
+
+  &__property {
+    width: calc(100% / 8);
+    text-align: center;
+    border-right: 2px solid var(--black);
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+}

@@ -1,0 +1,103 @@
+.statistic {
+  margin: 20px;
+}
+
+.table{
+  display: grid;
+  grid-template-columns: 2.5em 1fr;
+}
+
+.actions{
+  text-align: center;
+  display: flex;
+  margin: .2em;
+  justify-content: center;
+  height: 2.5em;
+
+  &__button{
+    border-radius: .5em;
+    padding: .2em 2em;
+    margin: .2em;
+    transition-duration: .2s;
+    border: none;
+    background-color: var(--accent);
+    color: var(--light);
+    font-size: 16px;
+
+    &:hover{
+      background-color: var(--light);
+      color: var(--black);
+    }
+
+    &:first-child{
+      margin-left: 0;
+    }
+  }
+}
+
+.selection{
+  &__selector{
+    font-size: 16px;
+    margin: 0.2em;
+    padding: 0.2em;
+    border-radius: 0.2em;
+    width: 13px;
+    height: 13px;
+    background-color: var(--dark);
+    border: 6px solid var(--dark);
+    transition-duration: .1s;
+
+    &--head{
+      margin-bottom: calc(.2em + 2px);
+    }
+
+    &--active{
+      background-color: var(--accent);
+    }
+
+    &:hover{
+      border: 6px solid var(--light);
+    }
+  }
+}
+
+.runs {
+  &__property-header {
+    text-align: center;
+    display: flex;
+    border-bottom: 2px solid var(--accent);
+    margin: .2em;
+    
+  }
+
+  &__property-name {
+    width: calc(100% / 8);
+    border-top-left-radius: .5em;
+    border-top-right-radius: .5em;
+    padding: .2em;
+    margin-bottom: .2em;
+    transition-duration: .2s;
+    background-color: var(--black);
+    border: none;
+    color: var(--light);
+    font-size: 16px;
+
+    &:hover {
+      background-color: var(--light);
+      color: var(--dark);
+    }
+    
+    &--ascending, &--descending {
+      background-color: var(--accent);
+      color: var(--light);
+    }
+    
+    &--ascending::after{
+      content: ' ⬆';
+    }
+
+    &--descending::after{
+      content: ' ⬇';
+    }
+  }
+}

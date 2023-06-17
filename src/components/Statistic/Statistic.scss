@@ -29,6 +29,7 @@
     font-size: 16px;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     & svg {
       transition-duration: .2s;
@@ -45,6 +46,11 @@
         transition-duration: .2s;
         fill: var(--black);
       }
+    }
+
+    &--disabled {
+      background-color: var(--dark);
+      color: var(--light);
     }
 
     &:first-child {

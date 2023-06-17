@@ -178,7 +178,7 @@ export function Statistic() {
       </div>
       <section className="actions">
         <button
-          className="actions__button"
+          className={'actions__button' + (selected.length ? '' : ' actions__button--disabled')}
           onClick={deleteSelected}
           onMouseEnter={() => setHovered('statistic.actions.delete')}
           onMouseLeave={() => setHovered('')}
@@ -187,7 +187,7 @@ export function Statistic() {
           <Delete />
         </button>
         <button
-          className="actions__button"
+          className={'actions__button' + (selected.length ? '' : ' actions__button--disabled')}
           onClick={exportSelected}
           onMouseEnter={() => setHovered('statistic.actions.export')}
           onMouseLeave={() => setHovered('')}

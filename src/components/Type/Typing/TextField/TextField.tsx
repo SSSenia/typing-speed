@@ -34,7 +34,8 @@ export default function TextField(props: { paramsRun: IParamsRun, status: IStatu
       setStatus({
         ...status,
         count: status.count + 1,
-        position: nextPosition
+        position: nextPosition,
+        timeStart: status.count ? status.timeStart : Date.now()
       });
     };
 

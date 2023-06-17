@@ -52,11 +52,11 @@ export default function Progress(props: { paramsRun: IParamsRun, status: IStatus
 
   let remaining: string = '';
 
-  if (props.paramsRun.type === 'time-end') remaining = Math.ceil((props.paramsRun.time * 1000 + props.status.timeStart - now) / 1000) + ' sec';
+  if (props.paramsRun.type === 'time-end') remaining = Math.ceil((props.paramsRun.time * 1000 + (props.status.count ? (props.status.timeStart - now) : 0)) / 1000) + ' sec';
   if (props.paramsRun.type === 'text-end') remaining = (props.paramsRun.size - props.status.count) + ' symbols';
 
   function done() {
-    if (!Number.parseInt(remaining) || Number.parseInt(remaining) < 0) {
+    if (props.status.count && (!Number.parseInt(remaining) || Number.parseInt(remaining) < 0)) {
       const id = save(props.paramsRun, props.status, searchParams, setSearchParams);
       navigate('/type/results/' + id);
     };

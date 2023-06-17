@@ -5,9 +5,9 @@ import IParamsRun from '../../../../interfaces/IParamsRun';
 import IRun from '../../../../interfaces/IRun';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-function save(paramsRun: IParamsRun, status: IStatus, searchParams: URLSearchParams, setSearchParams: any) {
+function save(paramsRun: IParamsRun, status: IStatus, searchParams: URLSearchParams, setSearchParams: any): number {
 
-  if (searchParams.get('saved') === 'true') return;
+  if (searchParams.get('saved') === 'true') return 0;
 
   const historyString = localStorage.getItem('history');
 
@@ -32,6 +32,8 @@ function save(paramsRun: IParamsRun, status: IStatus, searchParams: URLSearchPar
 
   searchParams.set('saved', 'true');
   setSearchParams(searchParams);
+
+  return historyArray.length;
 }
 
 export default function Progress(props: { paramsRun: IParamsRun, status: IStatus }) {
@@ -55,8 +57,8 @@ export default function Progress(props: { paramsRun: IParamsRun, status: IStatus
 
   function done() {
     if (!Number.parseInt(remaining) || Number.parseInt(remaining) < 0) {
-      save(props.paramsRun, props.status, searchParams, setSearchParams);
-      navigate('/statistic');
+      const id = save(props.paramsRun, props.status, searchParams, setSearchParams);
+      navigate('/type/results/' + id);
     };
   }
 

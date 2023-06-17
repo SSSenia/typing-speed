@@ -1,0 +1,17 @@
+.results {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.properties {
+  flex-wrap: wrap;
+  flex-direction: column;
+  font-size: 20px;
+
+  &__division {
+    display: flex;
+    justify-content: center;
+  }
+}

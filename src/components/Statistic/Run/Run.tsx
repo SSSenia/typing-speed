@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Run(props: { run: IRun }) {
   return (
-    <Link to={''}>
+    <Link to={'/type/results/'+props.run.id}>
       <article className='run'>
         <div className="run__property">
           {props.run.id}

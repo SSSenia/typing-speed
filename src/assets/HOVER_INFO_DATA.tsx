@@ -19,7 +19,7 @@ export const HOVER_INFO_DATA = new Map()
 
   // Statistic page
   .set('statistic.head.id', 'Element identifier')
-  .set('statistic.head.date', 'Date of passage ')
+  .set('statistic.head.date', 'Date of passage')
   .set('statistic.head.type', 'Type of passage, or until the end of the timer, or until the end of the number of characters')
   .set('statistic.head.language', 'Passing language')
   .set('statistic.head.symbols', 'Number of characters entered')
@@ -31,4 +31,21 @@ export const HOVER_INFO_DATA = new Map()
 
   .set('statistic.actions.delete', 'Delete selected records')
   .set('statistic.actions.export', 'Copy selected records')
-  .set('statistic.actions.import', 'Paste copied records');
+  .set('statistic.actions.import', 'Paste copied records')
+
+  // Results page
+  .set('results.id', 'Element identifier')
+  .set('results.date', 'Date and Time of passage')
+  .set('results.type', 'Type of passage, or until the end of the timer, or until the end of the number of characters')
+  .set('results.language', 'Passing language')
+  .set('results.symbols', 'Number of characters entered')
+  .set('results.words', 'Number of words entered')
+  .set('results.mistakes', 'Number of mistakes made')
+  .set('results.mistakes%', 'Percent of mistakes made')
+  .set('results.time.minute', 'Time in minutes spent on passing')
+  .set('results.time.second', 'Time in seconds spent on passing')
+  .set('results.time.millisecond', 'Time in milliseconds spent on passing')
+  .set('results.wordsPerMinute', 'Words per Minute')
+  .set('results.wordsPerSecond', 'Words per Second')
+  .set('results.symbolsPerMinute', 'Symbols per Minute')
+  .set('results.symbolsPerSecond', 'Symbols per Second')

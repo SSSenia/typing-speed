@@ -1,0 +1,30 @@
+.property {
+  padding: .7em;
+  margin: 1em;
+  background-color: var(--dark);
+  color: var(--light);
+  border-radius: .5em;
+
+  &:first-child {
+    border-left: 2px solid var(--accent);
+  }
+
+  &:last-child {
+    border-right: 2px solid var(--accent);
+  }
+
+  &__name {
+    margin-bottom: .3em;
+
+    &::after {
+      content: ':';
+    }
+  }
+
+  &__value {
+    padding-top: .3em;
+    border-top: 2px solid var(--accent);
+    text-align: center;
+    font-weight: 700;
+  }
+}

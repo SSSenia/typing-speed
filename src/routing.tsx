@@ -16,7 +16,7 @@ export const ROUTER = createBrowserRouter([
         children: [
           { path: 'setup', element: <Setup /> },
           { path: 'typing', element: <Typing /> },
-          { path: 'results', element: <Results /> }
+          { path: 'results/:id', element: <Results /> }
         ]
       },
       { path: 'statistic', element: <Statistic /> },

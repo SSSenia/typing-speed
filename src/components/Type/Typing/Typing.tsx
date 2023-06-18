@@ -17,13 +17,13 @@ import { UA_TEXT } from "../../../assets/text/UA_TEXT";
 
 export function Typing() {
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const DEFAULT_STATUS: IStatus = {
     count: 0,
     position: { row: 0, cursor: 0 },
     failed: [],
-    timeStart: +new Date(),
+    timeStart: +Date.now(),
     rows: [],
   };
 
@@ -124,7 +124,7 @@ export function Typing() {
 
   useEffect(() => {
     if (status.position.row > status.rows.length - ROWS_COUNT / 2) addRow();
-  }, [status]);
+  });
 
 
   if (!languageParsed || !typeParsed || !sizeParsed || !timeParsed) return <Navigate to="/type/setup"></Navigate>;

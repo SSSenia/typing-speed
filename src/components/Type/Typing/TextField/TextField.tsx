@@ -11,39 +11,66 @@ export default function TextField(props: { paramsRun: IParamsRun, status: IStatu
   const setStatus = props.setStatus;
 
   useEffect(() => {
-
     const char: IChar = status.rows[status.position.row][status.position.cursor];
 
     const handleKeyDown = (event: any) => {
-      const nextPosition: IPosition =
-        status.rows[char.position.row].length <= char.position.cursor + 1 ?
-          {
-            row: char.position.row + 1,
-            cursor: 0,
-          } :
-          {
-            row: char.position.row,
-            cursor: char.position.cursor + 1,
-          };
 
-      if (event.key === char.char) { }
-      else if (!(event.key.length - 1))
-        status.failed.push(char.position);
-      else return;
+      if (event.key === 'Backspace') {
+        const prevPosition: IPosition =
+          status.position.cursor > 0
+            ? {
+              row: char.position.row,
+              cursor: char.position.cursor - 1
+            }
+            : char.position.row > 0
+              ? {
+                row: char.position.row - 1,
+                cursor: status.rows[status.position.row - 1].length - 1
+              } : {
+                row: 0,
+                cursor: 0
+              };
 
-      setStatus({
-        ...status,
-        count: status.count + 1,
-        position: nextPosition,
-        timeStart: status.count ? status.timeStart : Date.now()
-      });
+        const lastFailed = status.failed[status.failed.length - 1];
+
+        if (lastFailed.cursor === prevPosition.cursor && lastFailed.row === prevPosition.row) status.failed.pop();
+
+        setStatus({
+          ...status,
+          count: status.count ? status.count - 1 : 0,
+          position: prevPosition,
+          timeStart: status.count ? status.timeStart : Date.now()
+        });
+      }
+
+      else if (event.key.length === 1) {
+        const nextPosition: IPosition =
+          status.rows[char.position.row].length <= char.position.cursor + 1
+            ? {
+              row: char.position.row + 1,
+              cursor: 0,
+            } : {
+              row: char.position.row,
+              cursor: char.position.cursor + 1,
+            };
+
+        if (event.key !== char.char)
+          status.failed.push(char.position);
+
+        setStatus({
+          ...status,
+          count: status.count + 1,
+          position: nextPosition,
+          timeStart: status.count ? status.timeStart : Date.now()
+        });
+      }
     };
 
-    if (char.position.row === status.position.row && char.position.cursor === status.position.cursor)
-      document.addEventListener('keypress', handleKeyDown);
-
-    return () => document.removeEventListener('keypress', handleKeyDown);
-  })
+    if (char.position.row === status.position.row && char.position.cursor === status.position.cursor) {
+      document.addEventListener('keydown', handleKeyDown);
+      return () => document.removeEventListener('keydown', handleKeyDown);
+    }
+  });
 
   return (
     <section className='text-field'>

@@ -19,13 +19,13 @@ function save(paramsRun: IParamsRun, status: IStatus, searchParams: URLSearchPar
 
   historyArray.push({
     id: historyArray.length + 1,
-    date: new Date,
+    date: new Date(),
     type: paramsRun.type,
     language: paramsRun.language,
     symbols: status.count,
     words: writedText.split(' ').length,
     mistakes: status.failed.length,
-    time: +new Date() - status.timeStart,
+    time: +Date.now() - status.timeStart,
   });
 
   localStorage.setItem('history', JSON.stringify(historyArray));
@@ -38,7 +38,7 @@ function save(paramsRun: IParamsRun, status: IStatus, searchParams: URLSearchPar
 
 export default function Progress(props: { paramsRun: IParamsRun, status: IStatus }) {
 
-  const now: number = +new Date();
+  const now: number = Date.now();
 
   const [searchParams, setSearchParams] = useSearchParams();
   const [time, setTime] = useState(now);
@@ -66,7 +66,7 @@ export default function Progress(props: { paramsRun: IParamsRun, status: IStatus
     done();
     const interval = setInterval(() => {
       done();
-      setTime(+new Date);
+      setTime(Date.now());
     }, 500);
     return () => clearInterval(interval);
   });

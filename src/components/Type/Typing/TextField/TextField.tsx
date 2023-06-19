@@ -33,7 +33,7 @@ export default function TextField(props: { paramsRun: IParamsRun, status: IStatu
 
         const lastFailed = status.failed[status.failed.length - 1];
 
-        if (lastFailed.cursor === prevPosition.cursor && lastFailed.row === prevPosition.row) status.failed.pop();
+        if (lastFailed && lastFailed.cursor === prevPosition.cursor && lastFailed.row === prevPosition.row) status.failed.pop();
 
         setStatus({
           ...status,

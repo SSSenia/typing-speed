@@ -116,19 +116,36 @@ export function Statistic() {
         id: index + 1
       }));
 
-    navigator.clipboard.writeText(JSON.stringify(selectedItems))
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(selectedItems));
+    const downloadAnchorElem: any = document.getElementById('downloadAnchorElem');
+
+    downloadAnchorElem.setAttribute("href", dataStr);
+    downloadAnchorElem.setAttribute("download", "typing-history.json");
+    downloadAnchorElem.click();
   }
 
-  async function importItems() {
-    const importItems = JSON.parse(await navigator.clipboard.readText());
+  function importItems(event: any) {
 
-    parsedHistory = parsedHistory
-      .concat(importItems)
-      .map((item, index) => ({ ...item, id: index + 1 }));
+    const reader = new FileReader();
 
+    let countLoaded = 0;
 
-    localStorage.setItem('history', JSON.stringify(parsedHistory));
-    setSelected([]);
+    reader.onload = function (e) {
+      parsedHistory = parsedHistory
+        .concat(JSON.parse('' + e.target?.result))
+        .sort((a, b) => +new Date(a.date) - +new Date(b.date))
+        .map((item, index) => ({ ...item, id: index + 1 }));
+
+      localStorage.setItem('history', JSON.stringify(parsedHistory));
+
+      countLoaded++;
+
+      if (event.target.files.length === countLoaded)
+        event.target.value = '';
+    };
+
+    for (const file of event.target.files)
+      reader.readAsText(file)
   }
 
   return (
@@ -195,16 +212,18 @@ export function Statistic() {
           <span className="actions__inscription">Export</span>
           <Export />
         </button>
+
         <button
           className="actions__button"
-          onClick={importItems}
           onMouseEnter={() => setHovered('statistic.actions.import')}
           onMouseLeave={() => setHovered('')}
         >
+          <input type="file" className="actions__file" onChange={importItems} />
           <span className="actions__inscription">Import</span>
           <Import />
         </button>
 
+        <a href="data:text/json;charset=utf-8" id='downloadAnchorElem' style={{ display: 'none' }}>downloadAnchorElem</a>
       </section>
       {hovered && <HoverInfo text={hovered}></HoverInfo>}
     </main>

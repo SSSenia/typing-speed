@@ -150,6 +150,40 @@ export function Statistic() {
 
   return (
     <main className='statistic'>
+
+<section className="actions">
+        <button
+          className={'actions__button' + (selected.length ? '' : ' actions__button--disabled')}
+          onClick={deleteSelected}
+          onMouseEnter={() => setHovered('statistic.actions.delete')}
+          onMouseLeave={() => setHovered('')}
+        >
+          <span className="actions__inscription">Delete</span>
+          <Delete />
+        </button>
+        <button
+          className={'actions__button' + (selected.length ? '' : ' actions__button--disabled')}
+          onClick={exportSelected}
+          onMouseEnter={() => setHovered('statistic.actions.export')}
+          onMouseLeave={() => setHovered('')}
+        >
+          <span className="actions__inscription">Export</span>
+          <Export />
+        </button>
+
+        <button
+          className="actions__button"
+          onMouseEnter={() => setHovered('statistic.actions.import')}
+          onMouseLeave={() => setHovered('')}
+        >
+          <input type="file" className="actions__file" onChange={importItems} />
+          <span className="actions__inscription">Import</span>
+          <Import />
+        </button>
+
+        <a href="data:text/json;charset=utf-8" id='downloadAnchorElem' style={{ display: 'none' }}>downloadAnchorElem</a>
+      </section>
+
       <div className='table'>
 
         <section className="selection">
@@ -193,38 +227,7 @@ export function Statistic() {
           )}
         </section>
       </div>
-      <section className="actions">
-        <button
-          className={'actions__button' + (selected.length ? '' : ' actions__button--disabled')}
-          onClick={deleteSelected}
-          onMouseEnter={() => setHovered('statistic.actions.delete')}
-          onMouseLeave={() => setHovered('')}
-        >
-          <span className="actions__inscription">Delete</span>
-          <Delete />
-        </button>
-        <button
-          className={'actions__button' + (selected.length ? '' : ' actions__button--disabled')}
-          onClick={exportSelected}
-          onMouseEnter={() => setHovered('statistic.actions.export')}
-          onMouseLeave={() => setHovered('')}
-        >
-          <span className="actions__inscription">Export</span>
-          <Export />
-        </button>
 
-        <button
-          className="actions__button"
-          onMouseEnter={() => setHovered('statistic.actions.import')}
-          onMouseLeave={() => setHovered('')}
-        >
-          <input type="file" className="actions__file" onChange={importItems} />
-          <span className="actions__inscription">Import</span>
-          <Import />
-        </button>
-
-        <a href="data:text/json;charset=utf-8" id='downloadAnchorElem' style={{ display: 'none' }}>downloadAnchorElem</a>
-      </section>
       {hovered && <HoverInfo text={hovered}></HoverInfo>}
     </main>
   );

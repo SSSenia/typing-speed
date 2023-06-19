@@ -124,6 +124,18 @@ export function Statistic() {
     downloadAnchorElem.click();
   }
 
+  function isExist(run: IRun): boolean {
+    return -1 !== parsedHistory.findIndex((i) =>
+      i.date === run.date
+      && i.language === run.language
+      && i.mistakes === run.mistakes
+      && i.symbols === run.symbols
+      && i.time === run.time
+      && i.type === run.type
+      && i.words === run.words
+    );
+  }
+
   function importItems(event: any) {
 
     const reader = new FileReader();
@@ -132,7 +144,8 @@ export function Statistic() {
 
     reader.onload = function (e) {
       parsedHistory = parsedHistory
-        .concat(JSON.parse('' + e.target?.result))
+        .concat(JSON.parse('' + e.target?.result)
+          .filter((run: any) => !isExist(run)))
         .sort((a, b) => +new Date(a.date) - +new Date(b.date))
         .map((item, index) => ({ ...item, id: index + 1 }));
 
@@ -151,7 +164,7 @@ export function Statistic() {
   return (
     <main className='statistic'>
 
-<section className="actions">
+      <section className="actions">
         <button
           className={'actions__button' + (selected.length ? '' : ' actions__button--disabled')}
           onClick={deleteSelected}

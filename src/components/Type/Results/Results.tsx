@@ -33,6 +33,7 @@ export function Results() {
     <main className="results">
 
       <section className="properties">
+        <h2 className="properties__title">Unique information</h2>
         <div className="properties__division">
 
           <Property
@@ -46,6 +47,7 @@ export function Results() {
 
         </div>
 
+        <h2 className="properties__title">Run setup information</h2>
         <div className="properties__division">
 
           <Property
@@ -59,6 +61,7 @@ export function Results() {
 
         </div>
 
+        <h2 className="properties__title">Quantitative information</h2>
         <div className="properties__division">
 
           <Property
@@ -80,24 +83,26 @@ export function Results() {
 
         </div>
 
+        <h2 className="properties__title">Time information</h2>
         <div className="properties__division">
 
           <Property
-            name={'Time Min'} value={Math.round(minutes * 100) / 100 + ' min'}
+            name={'Time Min'} value={Math.round(minutes * 100) / 100}
             hoverText={'results.time.minute'} setHovered={setHovered}
           />
           <Property
-            name={'Time Sec'} value={Math.round(seconds * 100) / 100 + ' sec'}
+            name={'Time Sec'} value={Math.round(seconds * 100) / 100}
             hoverText={'results.time.second'} setHovered={setHovered}
           />
           <Property
-            name={'Time MillSec'} value={selectedItem.time + ' millsec'}
+            name={'Time MillSec'} value={selectedItem.time}
             hoverText={'results.time.millisecond'} setHovered={setHovered}
           />
 
         </div>
 
 
+        <h2 className="properties__title">Calculated information</h2>
         <div className="properties__division">
 
           <Property

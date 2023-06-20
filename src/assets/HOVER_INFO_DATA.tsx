@@ -30,8 +30,8 @@ export const HOVER_INFO_DATA = new Map()
   .set('statistic.actions.select-all', 'Select all records')
 
   .set('statistic.actions.delete', 'Delete selected records')
-  .set('statistic.actions.export', 'Copy selected records')
-  .set('statistic.actions.import', 'Paste copied records')
+  .set('statistic.actions.export', 'Download selected records to json')
+  .set('statistic.actions.import', 'Upload records from json')
 
   // Results page
   .set('results.id', 'Element identifier')

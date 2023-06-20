@@ -14,6 +14,10 @@ import IChar from "../../../interfaces/IChar";
 import { EN_TEXT } from "../../../assets/text/EN_TEXT";
 import { RU_TEXT } from "../../../assets/text/RU_TEXT";
 import { UA_TEXT } from "../../../assets/text/UA_TEXT";
+import { Type } from "../../../assets/enums/Type.enum";
+import { Language } from "../../../assets/enums/Language.enum";
+import { Size } from "../../../assets/enums/Size.enum";
+import { Time } from "../../../assets/enums/Time.enum";
 
 export function Typing() {
 
@@ -40,8 +44,8 @@ export function Typing() {
   const timeParsed: string | null = searchParams.get('time');
 
   const paramsRun: IParamsRun = {
-    language: 'en',
-    type: 'text-end',
+    language: Language.EN,
+    type: Type.TextEnd,
     size: 0,
     time: 0,
     keyboard: [],
@@ -49,23 +53,23 @@ export function Typing() {
   };
 
   switch (languageParsed) {
-    case 'en':
-      paramsRun.language = 'en';
+    case Language.EN:
+      paramsRun.language = Language.EN;
       paramsRun.keyboard = EN;
       paramsRun.text = EN_TEXT;
       break;
-    case 'ru':
-      paramsRun.language = 'ru';
+    case Language.RU:
+      paramsRun.language = Language.RU;
       paramsRun.keyboard = RU;
       paramsRun.text = RU_TEXT;
       break;
-    case 'ua':
-      paramsRun.language = 'ua';
+    case Language.UA:
+      paramsRun.language = Language.UA;
       paramsRun.keyboard = UA;
       paramsRun.text = UA_TEXT;
       break;
     default:
-      paramsRun.language = 'en';
+      paramsRun.language = Language.EN;
       paramsRun.keyboard = EN;
       paramsRun.text = EN_TEXT;
   }
@@ -130,34 +134,34 @@ export function Typing() {
   if (!languageParsed || !typeParsed || !sizeParsed || !timeParsed) return <Navigate to="/type/setup"></Navigate>;
 
   switch (typeParsed) {
-    case 'text-end':
-      paramsRun.type = 'text-end';
+    case Type.TextEnd:
+      paramsRun.type = Type.TextEnd;
       break;
-    case 'time-end':
-      paramsRun.type = 'time-end';
+    case Type.TimeEnd:
+      paramsRun.type = Type.TimeEnd;
       break;
     default:
       return <Navigate to="/type/setup"></Navigate>;
   }
 
   switch (sizeParsed) {
-    case 'small':
+    case Size.Small:
       paramsRun.size = 100;
       break;
-    case 'medium':
+    case Size.Medium:
       paramsRun.size = 250;
       break;
-    case 'long':
+    case Size.Long:
       paramsRun.size = 500;
       break;
-    case 'infinity':
+    case Size.Infinity:
       paramsRun.size = Infinity;
       break;
     default:
       return <Navigate to="/type/setup"></Navigate>;
   }
 
-  if (timeParsed === 'infinity') paramsRun.time = Infinity;
+  if (timeParsed === Time.Infinity) paramsRun.time = Infinity;
   else if (Number.parseInt(timeParsed)) paramsRun.time = Number.parseInt(timeParsed);
   else return <Navigate to="/type/setup"></Navigate>;
 

@@ -1,7 +1,9 @@
+import { Type } from "../assets/enums/Type.enum";
+
 export default interface IRun {
   id: number,
   date: Date,
-  type: 'text-end' | 'time-end';
+  type: Type;
   language: string,
   symbols: number,
   words: number,

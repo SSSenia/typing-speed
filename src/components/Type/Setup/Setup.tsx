@@ -5,21 +5,25 @@ import { createSearchParams, useNavigate } from "react-router-dom";
 import './Setup.scss';
 import Selector from "./Selector/Selector";
 import ITypeRun from "../../../interfaces/ITypeRun";
+import { Language } from "../../../assets/enums/Language.enum";
+import { Type } from "../../../assets/enums/Type.enum";
+import { Size } from "../../../assets/enums/Size.enum";
+import { Time } from "../../../assets/enums/Time.enum";
 
 export function Setup() {
 
   const VALUES = {
-    language: ['en', 'ru', 'ua'],
-    type: ['text-end', 'time-end'],
-    size: ['small', 'medium', 'long'],
-    time: ['30s', '60s', '90s', '120s']
+    language: [Language.EN, Language.RU, Language.UA],
+    type: [Type.TextEnd, Type.TimeEnd],
+    size: [Size.Small, Size.Medium, Size.Long],
+    time: [Time.s30, Time.s60, Time.s90, Time.s120]
   };
 
   const DEFAULT_VALUES: ITypeRun = {
-    language: 'en',
-    type: 'text-end',
-    size: 'small',
-    time: '30s'
+    language: Language.EN,
+    type: Type.TextEnd,
+    size: Size.Small,
+    time: Time.s30
   };
 
   const { register, handleSubmit, getValues } = useForm({ defaultValues: DEFAULT_VALUES });
@@ -30,7 +34,7 @@ export function Setup() {
 
   const onSubmit = (data: ITypeRun) => {
     switch (data.type) {
-      case 'text-end':
+      case Type.TextEnd:
         if (data.language && data.size)
           navigate({
             pathname: '/type/typing',
@@ -38,18 +42,18 @@ export function Setup() {
               language: data.language,
               type: data.type,
               size: data.size,
-              time: 'infinity'
+              time: Time.Infinity
             }).toString()
           });
         break;
-      case 'time-end':
+      case Type.TimeEnd:
         if (data.language && data.time)
           navigate({
             pathname: '/type/typing',
             search: createSearchParams({
               language: data.language,
               type: data.type,
-              size: 'infinity',
+              size: Size.Infinity,
               time: data.time
             }).toString()
           });
@@ -65,11 +69,11 @@ export function Setup() {
           <Selector name="language" values={VALUES.language} register={register}></Selector>
           <Selector name="type" values={VALUES.type} register={register}></Selector>
 
-          {type === 'text-end' &&
+          {type === Type.TextEnd &&
             <Selector name="size" values={VALUES.size} register={register}></Selector>
           }
 
-          {type === 'time-end' &&
+          {type === Type.TimeEnd &&
             <Selector name="time" values={VALUES.time} register={register}></Selector>
           }
 

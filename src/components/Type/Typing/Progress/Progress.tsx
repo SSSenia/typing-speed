@@ -4,6 +4,7 @@ import IStatus from '../../../../interfaces/IStatus';
 import IParamsRun from '../../../../interfaces/IParamsRun';
 import IRun from '../../../../interfaces/IRun';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { Type } from '../../../../assets/enums/Type.enum';
 
 function save(paramsRun: IParamsRun, status: IStatus, searchParams: URLSearchParams, setSearchParams: any): number {
 
@@ -52,8 +53,8 @@ export default function Progress(props: { paramsRun: IParamsRun, status: IStatus
 
   let remaining: string = '';
 
-  if (props.paramsRun.type === 'time-end') remaining = Math.ceil((props.paramsRun.time * 1000 + (props.status.count ? (props.status.timeStart - now) : 0)) / 1000) + ' sec';
-  if (props.paramsRun.type === 'text-end') remaining = (props.paramsRun.size - props.status.count) + ' symbols';
+  if (props.paramsRun.type === Type.TimeEnd) remaining = Math.ceil((props.paramsRun.time * 1000 + (props.status.count ? (props.status.timeStart - now) : 0)) / 1000) + ' sec';
+  if (props.paramsRun.type === Type.TextEnd) remaining = (props.paramsRun.size - props.status.count) + ' symbols';
 
   function done() {
     if (props.status.count && (!Number.parseInt(remaining) || Number.parseInt(remaining) < 0)) {

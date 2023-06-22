@@ -1,6 +1,6 @@
 export enum Size{
   Small = 'small',
   Medium = 'medium',
-  Long = 'Long',
+  Long = 'long',
   Infinity = 'infinity'
 }
